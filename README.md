@@ -8,6 +8,7 @@ Task Management CRUD using Express JS and Sequelize
 - Add validations
 - Use Sequelize
 
-#Todo
+#Done
 
-- remove localhost database credentials from database file
+- Created CRUD
+- Added Sequelize

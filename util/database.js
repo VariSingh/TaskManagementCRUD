@@ -1,8 +1,10 @@
 const Sequelize = require("sequelize");
-
-const sequelize = new Sequelize("task-management","root","",{
-    dialect:"mysql",
-    host:"localhost"
+const config = require("./config");
+console.log("config",config);
+const sequelize = new Sequelize(config.DATABASE,config.USER,config.PASSWORD,{
+    dialect:config.DIALECT,
+    host:config.HOST
 });
 
 module.exports = sequelize;
+

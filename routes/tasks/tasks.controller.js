@@ -1,4 +1,5 @@
 const tasksService = require("./tasks.service");
+const { validationResult } = require("express-validator");
 exports.getTasks = async (req,res,next) => {
     try{
     const tasks =  await tasksService.getTasks();
@@ -21,6 +22,13 @@ exports.getTaskById = async (req,res,next) => {
 }
 
 exports.createTask = async (req,res,next) => {
+    const errors = validationResult(req);
+    console.log("validation failed ",errors);
+    if(!errors.isEmpty()){
+        console.log("validation failed ",errors);
+        return res.status(442).json({error:errors})
+    }
+    
     try{
         const result =  await tasksService.createTask(req.body);
         res.status(200).json(result);

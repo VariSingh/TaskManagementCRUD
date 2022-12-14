@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const tasksController = require("./tasks.controller");
-const { check } = require("express-validator");
-const { createTaskValidator } = require("./tasks.validator");
+const {getTasks,getTaskById,createTask,updateTask,updateTaskStatus,deleteTask} = require("./tasks.controller");
+const { taskValidator,statusValidator } = require("./tasks.validator");
 
-router.get("/",tasksController.getTasks);
-router.get("/:id",tasksController.getTaskById);
-router.post("/",createTaskValidator,tasksController.createTask);
-router.patch("/:id",tasksController.updateTask);
-router.patch("/:id/status",tasksController.updateTaskStatus);
-router.delete("/:id",tasksController.deleteTask);
+router.get("/",getTasks);
+router.get("/:id",getTaskById);
+router.patch("/:id/status",statusValidator,updateTaskStatus);
+router.post("/",taskValidator,createTask);
+router.patch("/:id",updateTask);
+
+router.delete("/:id",deleteTask);
 
 module.exports = router;

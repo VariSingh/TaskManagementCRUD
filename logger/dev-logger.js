@@ -1,7 +1,7 @@
 const {transports,format,createLogger} = require("winston");
 const {json,printf,timestamp,label,colorize} = format;
 
-const myFormat = printf(({timestamp,label,level,message})=>{
+const myFormat = json(({timestamp,label,level,message})=>{
   return `${timestamp} ${label} ${level} ${message}`;
 });
 

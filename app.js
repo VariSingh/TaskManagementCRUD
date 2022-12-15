@@ -4,10 +4,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var v1Router = require('./routes/v1Router');
-const logger = require("./logger");
 var app = express();
 const sequelize = require("./util/database");
-const { loggers } = require('winston');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -45,9 +43,5 @@ sequelize.sync().then((result)=>{
 }).catch((error)=>{
   console.log(error);
 });
-
-logger.warn("Warning");
-logger.info("Info");
-logger.error("Error");
 
 module.exports = app;

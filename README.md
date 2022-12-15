@@ -14,7 +14,8 @@ Task Management CRUD using Express JS and Sequelize
 - Created CRUD
 - Added Sequelize
 - Added validations
+- Add logger
 
 #In progress
 
-- Add logger
+- Integrate logger with DataDog

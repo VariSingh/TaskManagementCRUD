@@ -7,7 +7,10 @@ Task Management CRUD using Express JS and Sequelize
 - Create Task CRUD
 - Add validations
 - Use Sequelize
+- Use Mongoose
 - Add logger
+- Add DataDog integration for log monitoring
+- Add New relic integration for log monitoring
 
 #Done
 
@@ -15,7 +18,12 @@ Task Management CRUD using Express JS and Sequelize
 - Added Sequelize
 - Added validations
 - Add logger
+- Add New relic integration for log monitoring
 
 #In progress
 
-- Integrate logger with DataDog
+- Use Mongoose
+
+#Deffered
+
+- Add DataDog integration for log monitoring (Ran into file permission issue)

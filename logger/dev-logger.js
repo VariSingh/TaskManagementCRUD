@@ -9,7 +9,7 @@ const loggerConfig = {
   level: 'info',
   defaultMeta: { service: '' },
   transports: [
-    new transports.File({ level: 'info',filename: 'logs/combined.log' }),
+   // new transports.File({ level: 'info',filename: 'logs/combined.log' }),
     new transports.Console({level: 'info'})
   ],
   format: format.combine(

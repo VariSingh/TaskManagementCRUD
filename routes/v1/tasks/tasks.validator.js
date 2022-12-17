@@ -1,5 +1,5 @@
 const {check} = require("express-validator");
-const {DONE,OPEN,IN_PROGRESS} = require("../../util/constants");
+const {DONE,OPEN,IN_PROGRESS} = require("../../../util/constants");
 const statusValus = [
     OPEN,
     IN_PROGRESS,

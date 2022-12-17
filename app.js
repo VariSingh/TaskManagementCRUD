@@ -3,9 +3,12 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var v1Router = require('./routes/v1Router');
+var v1Router = require('./routes/v1/v1Router');
+const v2Router = require('./routes/v2/v2Router');
+const { default: mongoose } = require('mongoose');
+const { HOST, DATABASE } = require('./util/config');
 var app = express();
-const sequelize = require("./util/database");
+//const sequelize = require("./util/database");
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -19,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/api/v1', v1Router);
+app.use('/api/v2', v2Router);
 
 
 
@@ -38,10 +42,21 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-sequelize.sync().then((result)=>{
-  //console.log(result);
-}).catch((error)=>{
-  console.log(error);
-});
+mongoose.connect(`mongodb://${HOST}:27017/${DATABASE}`).then((result)=>{
+  console.log("Mongodb connected");
+}).catch(
+  (error)=>{
+    console.log("Mongodb error",error);
+  }
+);
+
+
+
+
+// sequelize.sync().then((result)=>{
+//   //console.log(result);
+// }).catch((error)=>{
+//   console.log(error);
+// });
 
 module.exports = app;

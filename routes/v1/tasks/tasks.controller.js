@@ -1,6 +1,6 @@
 const tasksService = require("./tasks.service");
 const { validationResult } = require("express-validator");
-const logger = require("../../logger");
+const logger = require("../../../logger");
 exports.getTasks = async (req,res,next) => {
     try{
     const tasks =  await tasksService.getTasks();

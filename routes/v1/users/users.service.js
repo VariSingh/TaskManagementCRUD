@@ -1,4 +1,7 @@
 const User = require("./users.model");
+const jwt = require("jsonwebtoken");
+const { compare } = require("bcrypt");
+const { JWT_ACCESS_TOKEN_SECRET } = require("../../../util/config");
 
 exports.signUp = async (data) => {
     const {email,password,name} = data;
@@ -24,5 +27,9 @@ exports.signIn = async (data) => {
        if(!match){
         return null;
        }
-       return user;
+       const payload = {
+        email:email
+       }
+       const accessToken = jwt.sign(payload,JWT_ACCESS_TOKEN_SECRET,{expiresIn:'1h'});
+       return {token:accessToken};
 }

@@ -11,7 +11,8 @@ Task Management CRUD using Express JS and Sequelize
 - Add logger
 - Add DataDog integration for log monitoring
 - Add New relic integration for log monitoring
-- Authentication and Authorization with Passport jwt
+- Authentication and Authorization with jwt
+- Authentication and Authorization with passport jwt
 
 #Done
 
@@ -24,7 +25,7 @@ Task Management CRUD using Express JS and Sequelize
 
 #In progress
 
-- Authentication and Authorization with Passport jwt
+- Authentication and Authorization with jwt
 
 #Deffered
 

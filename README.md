@@ -22,10 +22,11 @@ Task Management CRUD using Express JS and Sequelize
 - Add logger
 - Add New relic integration for log monitoring
 - Use Mongoose
+- Authentication and Authorization with jwt
 
 #In progress
 
-- Authentication and Authorization with jwt
+- Authentication and Authorization with Passport jwt
 
 #Deffered
 

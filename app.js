@@ -7,6 +7,7 @@ var v1Router = require('./routes/v1/v1Router');
 const v2Router = require('./routes/v2/v2Router');
 const { default: mongoose } = require('mongoose');
 const { HOST, DATABASE } = require('./util/config');
+const passport = require('passport');
 var app = express();
 //const sequelize = require("./util/database");
 // view engine setup
@@ -17,8 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-
+app.use(passport.initialize());
+require("./util/passport");
 
 
 app.use('/api/v1', v1Router);

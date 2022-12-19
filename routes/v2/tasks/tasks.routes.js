@@ -1,16 +1,16 @@
 const express = require("express");
-const { authenthorize } = require("../../../middlewares/auth.middleware");
 const router = express.Router();
 const {getTasks,getTaskById,createTask,updateTask,updateTaskStatus,deleteTask} = require("./tasks.controller");
 const { taskValidator,statusValidator,idValidator } = require("./tasks.validator");
+const passport = require("passport");
 
 //Private routes
-router.get("/",authenthorize,getTasks);
-router.get("/:id",authenthorize,idValidator,getTaskById);
-router.patch("/:id/status",authenthorize,idValidator,statusValidator,updateTaskStatus);
-router.post("/",authenthorize,taskValidator,createTask);
-router.patch("/:id",authenthorize,idValidator,taskValidator,updateTask);
+router.get("/",passport.authenticate('jwt',{session:false}),getTasks);
+router.get("/:id",passport.authenticate('jwt',{session:false}),idValidator,getTaskById);
+router.patch("/:id/status",passport.authenticate('jwt',{session:false}),idValidator,statusValidator,updateTaskStatus);
+router.post("/",passport.authenticate('jwt',{session:false}),taskValidator,createTask);
+router.patch("/:id",passport.authenticate('jwt',{session:false}),idValidator,taskValidator,updateTask);
 
-router.delete("/:id",authenthorize,idValidator,deleteTask);
+router.delete("/:id",passport.authenticate('jwt',{session:false}),idValidator,deleteTask);
 
 module.exports = router;

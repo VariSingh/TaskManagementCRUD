@@ -13,6 +13,7 @@ Task Management CRUD using Express JS and Sequelize
 - Add New relic integration for log monitoring
 - Authentication and Authorization with jwt
 - Authentication and Authorization with passport jwt
+- Formatted responses and graceful error handling
 
 #Done
 

@@ -14,6 +14,7 @@ Task Management CRUD using Express JS and Sequelize
 - Authentication and Authorization with jwt
 - Authentication and Authorization with passport jwt
 - Formatted responses and graceful error handling
+- Authorization with sessions
 
 #Done
 
@@ -28,7 +29,7 @@ Task Management CRUD using Express JS and Sequelize
 
 #In progress
 
-- Authentication and Authorization with Passport jwt
+- Authorization with sessions
 
 #Deffered
 

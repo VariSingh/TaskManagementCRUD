@@ -27,10 +27,9 @@ Task Management CRUD using Express JS and Sequelize
 - Use Mongoose
 - Authentication and Authorization with jwt
 - Authentication and Authorization with Passport jwt
+- Authorization with sessions (Implemented in [playwithsession] repo(https://github.com/VariSingh/playwithsession)
 
 #In progress
-
-- Authorization with sessions
 
 #Deffered
 

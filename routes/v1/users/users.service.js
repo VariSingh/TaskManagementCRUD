@@ -10,7 +10,12 @@ exports.signUp = async (data) => {
             password,
             name
     });
-     return await user.save();
+     const savedUser = await user.save();
+     const payload = {
+        email:savedUser.email
+       }
+     const accessToken = jwt.sign(payload,JWT_ACCESS_TOKEN_SECRET,{expiresIn:'1d'});
+       return accessToken;
 }
 
 exports.getUserByEmail = async (email)=> {
@@ -30,6 +35,6 @@ exports.signIn = async (data) => {
        const payload = {
         email:email
        }
-       const accessToken = jwt.sign(payload,JWT_ACCESS_TOKEN_SECRET,{expiresIn:'1h'});
-       return {token:accessToken};
+       const accessToken = jwt.sign(payload,JWT_ACCESS_TOKEN_SECRET,{expiresIn:'1d'});
+       return accessToken;
 }

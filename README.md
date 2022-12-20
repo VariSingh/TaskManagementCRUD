@@ -15,7 +15,7 @@ Task Management CRUD using Express JS and Sequelize
 - Authentication and Authorization with passport jwt
 - Formatted responses and graceful error handling
 - Authorization with sessions
-- Implement refresh token
+- Implement refresh token with rotation
 
 ## Done
 
@@ -30,6 +30,8 @@ Task Management CRUD using Express JS and Sequelize
 - Authorization with sessions (Implemented in [playwithsession](https://github.com/VariSingh/playwithsession))
 
 ## In progress
+
+- Implement refresh token with rotation
 
 ## Deffered
 

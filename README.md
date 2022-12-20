@@ -28,6 +28,7 @@ Task Management CRUD using Express JS and Sequelize
 - Authentication and Authorization with jwt
 - Authentication and Authorization with Passport jwt
 - Authorization with sessions (Implemented in [playwithsession](https://github.com/VariSingh/playwithsession))
+- Formatted responses and graceful error handling
 
 ## In progress
 

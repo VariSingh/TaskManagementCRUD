@@ -2,7 +2,7 @@
 
 Task Management CRUD using Express JS and Sequelize
 
-#Objective
+## Objective
 
 - Create Task CRUD
 - Add validations
@@ -17,7 +17,7 @@ Task Management CRUD using Express JS and Sequelize
 - Authorization with sessions
 - Implement refresh token
 
-#Done
+## Done
 
 - Created CRUD
 - Added Sequelize
@@ -27,10 +27,10 @@ Task Management CRUD using Express JS and Sequelize
 - Use Mongoose
 - Authentication and Authorization with jwt
 - Authentication and Authorization with Passport jwt
-- Authorization with sessions (Implemented in [playwithsession] repo(https://github.com/VariSingh/playwithsession)
+- Authorization with sessions (Implemented in [playwithsession](https://github.com/VariSingh/playwithsession))
 
-#In progress
+## In progress
 
-#Deffered
+## Deffered
 
 - Add DataDog integration for log monitoring (Ran into file permission issue)

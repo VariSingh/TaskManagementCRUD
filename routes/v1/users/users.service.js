@@ -1,40 +1,71 @@
 const User = require("./users.model");
 const jwt = require("jsonwebtoken");
 const { compare } = require("bcrypt");
-const { JWT_ACCESS_TOKEN_SECRET } = require("../../../util/config");
+var refreshTokenArr = [];
+const {
+  JWT_ACCESS_TOKEN_SECRET,
+  JWT_REFRESH_TOKEN_SECRET,
+  JWT_ACCESS_TOKEN_EXPIRES_IN,
+  JWT_REFRESH_TOKEN_EXPIRES_IN,
+} = require("../../../util/config");
 
-exports.signUp = async (data) => {
-    const {email,password,name} = data;
-        const user  = new User({
-            email,
-            password,
-            name
-    });
-     const savedUser = await user.save();
-     const payload = {
-        email:savedUser.email
-       }
-     const accessToken = jwt.sign(payload,JWT_ACCESS_TOKEN_SECRET,{expiresIn:'1d'});
-       return accessToken;
-}
+exports.generateAccessToken = (payload) =>
+  jwt.sign(payload, JWT_ACCESS_TOKEN_SECRET, {
+    expiresIn: JWT_ACCESS_TOKEN_EXPIRES_IN,
+  });
 
-exports.getUserByEmail = async (email)=> {
-    return await User.findOne({email});
-}
+exports.generateRefreshToken = (payload) =>
+  jwt.sign(payload, JWT_REFRESH_TOKEN_SECRET, {
+    expiresIn: JWT_REFRESH_TOKEN_EXPIRES_IN,
+  });
 
-exports.signIn = async (data) => {
-    const {email,password} = data;
-       const user = await this.getUserByEmail(email);
-       if(!user){
-        return null;
-       }
-       const match = await compare(password,user.password);
-       if(!match){
-        return null;
-       }
-       const payload = {
-        email:email
-       }
-       const accessToken = jwt.sign(payload,JWT_ACCESS_TOKEN_SECRET,{expiresIn:'1d'});
-       return accessToken;
-}
+exports.verifyRefreshToken = async (token) => {
+  const decodedToken = jwt.verify(token, JWT_REFRESH_TOKEN_SECRET);
+  const { email } = decodedToken;
+  const user = await User.findOne({ email, refreshToken: token });
+  if (!user) {
+    return null;
+  }
+  return user;
+};
+
+exports.saveUser = async (data) => {
+  const { email, password, name } = data;
+  const user = new User({
+    email,
+    password,
+    name,
+  });
+  return await user.save();
+};
+
+exports.getUserByEmail = async (email) => {
+  return await User.findOne({ email });
+};
+
+exports.saveRefreshTokenInDB = async (user, refreshToken) => {
+  return await User.findOneAndUpdate(
+    { email: user.email },
+    { $push: { refreshToken } }
+  );
+};
+
+exports.removeRefreshTokenFromDB = async (user, refreshToken) => {
+  return await User.findOneAndUpdate(
+    { email: user.email },
+    { $pull: { refreshToken } }
+  );
+};
+
+exports.clearCookie = (res) => {
+  res.clearCookie("jwt", { httpOnly: true, sameSite: "None", secure: true });
+};
+
+exports.generateCookie = (res, refreshToken) => {
+  res.cookie("jwt", refreshToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+    maxAge: 24 * 60 * 60 * 1000,
+  });
+};

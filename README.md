@@ -31,10 +31,9 @@ Task Management CRUD using Express JS and Sequelize
 - Authorization with sessions (Implemented in [playwithsession](https://github.com/VariSingh/playwithsession))
 - Formatted responses and graceful error handling
 - Implement refresh token with rotation
+- Implement file upload
 
 ## In progress
-
-- Implement file upload
 
 ## Deffered
 

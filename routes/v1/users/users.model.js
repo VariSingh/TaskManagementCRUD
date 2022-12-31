@@ -17,6 +17,9 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    facebookId: {
+      type: String,
+    },
     refreshToken: [String],
   },
   { timestamps: true }

@@ -17,6 +17,7 @@ Task Management CRUD using Express JS and Sequelize
 - Authorization with sessions
 - Implement refresh token with rotation
 - Implement file upload
+- Signup with Facebook
 
 ## Done
 
@@ -34,6 +35,8 @@ Task Management CRUD using Express JS and Sequelize
 - Implement file upload
 
 ## In progress
+
+- Signup with Facebook
 
 ## Deffered
 

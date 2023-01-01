@@ -9,6 +9,7 @@ const { default: mongoose } = require("mongoose");
 const { HOST, DATABASE } = require("./util/config");
 const passport = require("passport");
 const helmet = require("helmet");
+const cors = require("cors");
 var app = express();
 //const sequelize = require("./util/database");
 // view engine setup
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(passport.initialize());
 app.use(helmet());
+app.use(cors());
 require("./util/passport");
 
 app.use("/api/v1", v1Router);

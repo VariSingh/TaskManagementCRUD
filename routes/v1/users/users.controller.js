@@ -13,8 +13,17 @@ exports.signUp = async (req, res, next) => {
   try {
     //If both password field and facebookId is present, consider facebookId first
     let user;
-    if (req.body.facebookId) {
-      user = await userService.saveUserWithFacebookId(req.body);
+    const { facebookId } = req.body;
+    if (facebookId) {
+      const facebookToken = req.headers["fb-token"];
+      const fbUserValid = await userService.isFacebookUser(
+        facebookToken,
+        facebookId
+      );
+      if (!fbUserValid) {
+        return customResponse.internalServerError(res);
+      }
+      user = await userService.saveUserWithFacebookId(req);
     } else {
       user = await userService.saveUserWithPassword(req.body);
     }
@@ -33,7 +42,6 @@ exports.signUp = async (req, res, next) => {
     if (error.code === 11000) {
       return customResponse.customError(res, "User already exists", null);
     }
-    console.log("ISE ", error);
     return customResponse.internalServerError(res);
   }
 };

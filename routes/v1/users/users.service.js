@@ -7,7 +7,9 @@ const {
   JWT_REFRESH_TOKEN_SECRET,
   JWT_ACCESS_TOKEN_EXPIRES_IN,
   JWT_REFRESH_TOKEN_EXPIRES_IN,
+  FACEBOOK_BASE_URL,
 } = require("../../../util/config");
+const { default: axios } = require("axios");
 
 exports.generateAccessToken = (payload) =>
   jwt.sign(payload, JWT_ACCESS_TOKEN_SECRET, {
@@ -39,8 +41,22 @@ exports.saveUserWithPassword = async (data) => {
   return await user.save();
 };
 
-exports.saveUserWithFacebookId = async (data) => {
-  const { email, name, facebookId } = data;
+exports.isFacebookUser = async (facebookToken, facebookId) => {
+  try {
+    const url = `${FACEBOOK_BASE_URL}/me?access_token=${facebookToken}`;
+    console.log("url ", url);
+    const fbUser = await axios({
+      method: "get",
+      url,
+    });
+    return facebookId == fbUser?.data?.id;
+  } catch (error) {
+    throw new Error("Internal server error");
+  }
+};
+
+exports.saveUserWithFacebookId = async (req) => {
+  const { email, name, facebookId } = req.body;
   const user = new User({
     email,
     facebookId,

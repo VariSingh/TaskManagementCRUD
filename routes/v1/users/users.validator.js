@@ -1,4 +1,4 @@
-const { param, body, oneOf } = require("express-validator");
+const { param, body, oneOf, header } = require("express-validator");
 const mongoose = require("mongoose");
 const {
   MIN_PASSWORD_LENGTH,
@@ -30,4 +30,9 @@ exports.userValidator = [
       .notEmpty()
       .withMessage("Facebook Id can not be empty"),
   ]),
+  header("fb-token")
+    .if((value, { req }) => req.body.facebookId)
+    .trim()
+    .notEmpty()
+    .withMessage("Facebook token can not be empty"),
 ];

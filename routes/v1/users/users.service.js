@@ -29,11 +29,21 @@ exports.verifyRefreshToken = async (token) => {
   return user;
 };
 
-exports.saveUser = async (data) => {
+exports.saveUserWithPassword = async (data) => {
   const { email, password, name } = data;
   const user = new User({
     email,
     password,
+    name,
+  });
+  return await user.save();
+};
+
+exports.saveUserWithFacebookId = async (data) => {
+  const { email, name, facebookId } = data;
+  const user = new User({
+    email,
+    facebookId,
     name,
   });
   return await user.save();

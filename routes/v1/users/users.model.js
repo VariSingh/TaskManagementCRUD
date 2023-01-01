@@ -15,7 +15,6 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: true,
     },
     facebookId: {
       type: String,
@@ -26,7 +25,9 @@ const userSchema = new Schema(
 );
 
 userSchema.pre("save", async function (next) {
-  this.password = await hash(this.password, BCRYPT_ROUNDS);
+  if (this.password) {
+    this.password = await hash(this.password, BCRYPT_ROUNDS);
+  }
   next();
 });
 

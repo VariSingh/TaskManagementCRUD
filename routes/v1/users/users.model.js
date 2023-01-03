@@ -15,9 +15,11 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
+      select: false,
     },
     facebookId: {
       type: String,
+      unique: true,
     },
     refreshToken: [String],
   },

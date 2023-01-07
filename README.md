@@ -18,6 +18,7 @@ Task Management CRUD using Express JS and Sequelize
 - Implement refresh token with rotation
 - Implement file upload
 - Signup with Facebook
+- Add Cron 
 
 ## Done
 
@@ -33,10 +34,11 @@ Task Management CRUD using Express JS and Sequelize
 - Formatted responses and graceful error handling
 - Implement refresh token with rotation
 - Implement file upload
+- Signup with Facebook
 
 ## In progress
 
-- Signup with Facebook
+- Add Cron 
 
 ## Deffered
 

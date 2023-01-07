@@ -10,6 +10,7 @@ const { HOST, DATABASE } = require("./util/config");
 const passport = require("passport");
 const helmet = require("helmet");
 const cors = require("cors");
+const cron = require('node-cron');
 var app = express();
 //const sequelize = require("./util/database");
 // view engine setup
@@ -32,6 +33,11 @@ app.use("/api/v2", v2Router);
 app.use(function (req, res, next) {
   next(createError(404));
 });
+
+//start cron
+// cron.schedule('*/2 * * * * *', () => {
+//   console.log('running a task every two seconds');
+// })
 
 // error handler
 app.use(function (err, req, res, next) {
